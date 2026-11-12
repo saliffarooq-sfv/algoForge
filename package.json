@@ -1,0 +1,12 @@
+{
+  "name": "algoforgebackend",
+  "version": "1.0.0",
+  "description": "\"This is the admin service for the problems of aldoforge platform\"",
+  "license": "ISC",
+  "author": "salif farooq",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
