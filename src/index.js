@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyparser = require('body-parser');
-
 const { PORT } = require('./config/server.config');
 const apiRouter = require('./routes');
+const errorHandler = require('./utils/errorHandeler');
 
 const app = express();
 
@@ -19,8 +19,11 @@ app.get('/ping', (req,res) =>{
 });
 
 
+app.use(errorHandler);
+
 app.listen(PORT, () =>{
     console.log(`server started at port: ${PORT}`)
+    
 });
 
 
