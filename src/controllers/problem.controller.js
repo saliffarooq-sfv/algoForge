@@ -1,7 +1,10 @@
-const { StatusCodes } = require('http-status-codes');
+
 const BadRequest = require('../errors/badRequest.errors');
+const { ProblemService} = require('../services');
+const { ProblemRepository } = require('../repositories');
+const { StatusCodes } = require('http-status-codes');
 
-
+const problemService = new ProblemService(new ProblemRepository());
 
 function pingController(req,res,next){
     return res.json({message: "problem controller is up"})
@@ -10,23 +13,39 @@ function pingController(req,res,next){
 
 
 
-function addProblem(req, res,next){
+async function addProblem(req, res,next){
       try{
-        //Nothing implemented
-        throw new BadRequest('Problem name' , {missing  : ['problem Name']})
+          const newproblem = await problemService.createProblem(req.body);
+          return res.status(StatusCodes.CREATED).json({
+            success: true,
+            message:"sucessfully created a new problem",
+            error:{},
+            data: newproblem
+          })
     } catch(error){
         next(error);
     }
 }
 
 
-function getProblem(req, res){
+async function getProblem(req, res, next){
+
    
 }
 
 
-function getProblems(req, res){
-
+async function getProblems(req, res, next){
+        try {
+        const response = await problemService.getProblems();
+        return res.status(StatusCodes.OK).json({
+                success: true,
+                message:"sucessfully fetched all the problems",
+                error:{},
+                data: response
+        })
+    } catch (error) {
+        next(error);
+    }
 }
 
 

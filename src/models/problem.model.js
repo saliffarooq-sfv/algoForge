@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const problemSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: [true, 'Tiyle can not be empty']
+        required: [true, 'Title can not be empty']
     },
 
     description: {
@@ -32,7 +32,7 @@ const problemSchema = new mongoose.Schema({
         }
     ],
     editorial: {
-        type:string,
+        type:String,
     }
 });
 

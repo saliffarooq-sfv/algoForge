@@ -27,14 +27,6 @@ app.listen(PORT, async() =>{
     console.log(`server started at port: ${PORT}`)
     await connectionToDB();
     console.log("Sucessfully connected to DB")
-    
-    const kittySchema = new mongoose.Schema({
-  name: String
-    });
-    const Kitten = mongoose.model('Kitten', kittySchema);
-    const silence = new Kitten({ name: 'Silence' });
-console.log(silence.name); // 'Silence'
-
 
 });
 
