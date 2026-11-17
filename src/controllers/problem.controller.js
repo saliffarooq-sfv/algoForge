@@ -29,7 +29,17 @@ async function addProblem(req, res,next){
 
 
 async function getProblem(req, res, next){
-
+    try {
+        const problem = await problemService.getProblem(req.params.id)
+        return res.status(StatusCodes.OK).json({
+                success: true,
+                message:"sucessfully fetched the problem",
+                error:{},
+                data: problem
+        })
+    }catch(error){
+        next(error);
+    }
    
 }
 
@@ -43,9 +53,9 @@ async function getProblems(req, res, next){
                 error:{},
                 data: response
         })
-    } catch (error) {
-        next(error);
-    }
+        } catch (error) {
+            next(error);
+        }
 }
 
 
