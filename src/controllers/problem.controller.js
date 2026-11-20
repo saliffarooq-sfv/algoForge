@@ -59,11 +59,47 @@ async function getProblems(req, res, next){
 }
 
 
-function deleteProblem(req, res){
+async function deleteProblem(req, res, next){
+    try {
+        const deletedProblem = await problemService.deleteProblem(req.params.id);
+        return res.status(StatusCodes.OK).json({
+                success: true,
+                message:"sucessfully deleted the problems",
+                error:{},
+                data: deletedProblem
+        })
+    } catch (error) {
+         next(error);
+    }
 }
 
 
-function updateProblem(req, res){
+async function updateProblem(req, res, next) {
+    try {
+        const updatedProblem = await problemService.updateProblem(req.params.id, req.body);
+        return res.status(StatusCodes.OK).json({
+            success: true,
+            message: "Successfully updated the problem",
+            error: {},
+            data: updatedProblem
+        });
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function updateProblem(req, res, next) {
+    try {
+        const updatedProblem = await problemService.updateProblem(req.params.id, req.body);
+        return res.status(StatusCodes.OK).json({
+            success: true,
+            message: "Successfully updated the problem",
+            error: {},
+            data: updatedProblem
+        });
+    } catch (error) {
+        next(error);
+    }
 }
 
 
